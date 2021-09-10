@@ -5,6 +5,8 @@ use App\Http\Controllers\Pemberkasan\ViewController as PemberkasanViewController
 use App\Http\Controllers\Pemberkasan\UpdateController as PemberkasanUpdateController;
 use App\Http\Controllers\Pemberkasan\CreateController as PemberkasanCreateController;
 use App\Http\Controllers\Pemberkasan\DeleteController as PemberkasanDeleteController;
+use App\Models\Administrator;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/fikri', function () {
-//     return view('fikri');
-// });
+Route::get('/test', function () {
+    return dd(Administrator::all());
+});
 
 Route::get('/fikri',[Controller :: class, 'showFikri'] );
 
