@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTahapPembayaran extends Migration
+class CreatePekerjaanPembayaran extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateTahapPembayaran extends Migration
      */
     public function up()
     {
-        Schema::create('tahap_pembayaran', function (Blueprint $table) {
+        Schema::create('pekerjaan_pembayaran', function (Blueprint $table) {
             $table->id();
             $table->string('pembayaran_total');
             $table->string('pembayaran_dp');
             $table->string('pembayaran_dp_bukti');
-            $table->bigInteger('id_tahap_pengajuan');
-            $table->foreign('id_tahap_pengajuan')->references('id')->on('tahap_pengajuan');
+            $table->string('pembayaran_sisa');
+            $table->string('pembayaran_sisa_bukti');
+            $table->bigInteger('pekerjaan_id');
+            $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateTahapPembayaran extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tahap_pembayaran');
+        Schema::dropIfExists('pekerjaan_pembayaran');
     }
 }

@@ -42,7 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tahap_berkas () {
-        return $this->hasMany(TahapBerkas::class,'id_user','id');
+    public function user_identitas () {
+        return $this->hasOne(UserIdentitas::class, 'user_id', 'id');
+    }
+    public function pekerjaan () {
+        return $this->hasMany(Pekerjaan::class, 'user_id', 'id');
     }  
 }

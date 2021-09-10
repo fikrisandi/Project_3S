@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTahapFiksasi extends Migration
+class CreatePekerjaanMeet extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTahapFiksasi extends Migration
      */
     public function up()
     {
-        Schema::create('tahap_fiksasi', function (Blueprint $table) {
+        Schema::create('pekerjaan_meet', function (Blueprint $table) {
             $table->id();
+            $table->string('meet_pengajuan_jadwal');
+            $table->string('meet_pengajuan_link');
             $table->string('meet_pelaporan_jadwal');
             $table->string('meet_pelaporan_link');
-            $table->string('tarif_sisa');
-            $table->string('pembayaran_sisa_bukti');
-            $table->bigInteger('id_tahap_pembayaran');
-            $table->foreign('id_tahap_pembayaran')->references('id')->on('tahap_pembayaran');
+            $table->bigInteger('pekerjaan_id');
+            $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateTahapFiksasi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tahap_fiksasi');
+        Schema::dropIfExists('pekerjaan_meet');
     }
 }
