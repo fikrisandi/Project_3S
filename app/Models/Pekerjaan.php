@@ -25,9 +25,9 @@ class Pekerjaan extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function pekerjaan_meet () {
-        return $this->hasOne(PekerjaanMeet::class, 'pekerjaan_id', 'id');
+        return $this->hasMany(PekerjaanMeet::class, 'pekerjaan_id', 'id');
     }
     public function pekerjaan_pembayaran () {
-        return $this->hasOne(PekerjaanPembayaran::class, 'pekerjaan_id', 'id');
+        return $this->hasMany(PekerjaanPembayaran::class, 'pekerjaan_id', 'id');
     }
 }

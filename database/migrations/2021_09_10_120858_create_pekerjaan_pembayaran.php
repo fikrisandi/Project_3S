@@ -15,10 +15,10 @@ class CreatePekerjaanPembayaran extends Migration
     {
         Schema::create('pekerjaan_pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->string('pembayaran_total');
-            $table->string('pembayaran_dp');
+            $table->decimal('pembayaran_total',10,2);
+            $table->decimal('pembayaran_dp',10,2);
             $table->string('pembayaran_dp_bukti');
-            $table->string('pembayaran_sisa');
+            $table->decimal('pembayaran_sisa',10,2);
             $table->string('pembayaran_sisa_bukti');
             $table->bigInteger('pekerjaan_id');
             $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');

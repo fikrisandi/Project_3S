@@ -14,6 +14,6 @@ class PekerjaanStatus extends Model
     ];
 
     public function pekerjaan_status () {
-        return $this->hasOne(PekerjaanStatus::class, 'pekerjaan_id', 'id');
+        return $this->hasMany(PekerjaanStatus::class, 'pekerjaan_id', 'id');
     }
 }

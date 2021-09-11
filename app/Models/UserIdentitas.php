@@ -20,7 +20,7 @@ class UserIdentitas extends Model
         'profesi',
         'nama_perusahan',
         'foto_ktp',
-        'NIK'
+        'nik'
     ];
 
     public function user () {

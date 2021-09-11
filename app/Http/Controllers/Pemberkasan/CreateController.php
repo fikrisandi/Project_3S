@@ -19,8 +19,3 @@ class CreateController extends Controller
         ]);
     }
 }
-// $table->string('pilihan_pekerjaan');
-// $table->string('nama_pekerjaan',25);
-// $table->string('RAB');
-// $table->string('TOR');
-// $table->bigInteger('id_user');

@@ -49,7 +49,7 @@ class LoginRequest extends FormRequest
             $details = Auth::guard('users')->user();
             $user = $details['original'];
             return $user;
-        } else if (Auth::guard('administrators')->attempt(['username' => $this->username, 'password' => $this->password])) {
+        } else if (Auth::guard('administrators')->attempt(['username' => $this->email, 'password' => $this->password])) {
             $details = Auth::guard('administrators')->user();
             $user = $details['original'];
             return $user;

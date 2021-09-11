@@ -7,6 +7,7 @@ use App\Http\Controllers\Pemberkasan\CreateController as PemberkasanCreateContro
 use App\Http\Controllers\Pemberkasan\DeleteController as PemberkasanDeleteController;
 use App\Models\Administrator;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,13 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return dd(Administrator::all());
+    $semua = Auth::guard('administrators')->check();
+    return dd($semua);
+});
+Route::group(['prefix' => '', 'middleware' => ''], function () {
+    Route::get('/admin-dashboard', function () {
+        return view('dashboard');
+    });
 });
 
 Route::get('/fikri',[Controller :: class, 'showFikri'] );

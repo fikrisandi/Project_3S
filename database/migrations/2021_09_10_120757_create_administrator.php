@@ -19,8 +19,8 @@ class CreateAdministrator extends Migration
             $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('last_login');
-            $table->bigInteger('type_id');
+            $table->date('last_login')->nullable();
+            $table->bigInteger('type_id')->nullable();
             $table->foreign('type_id')->references('id')->on('admin_type');
             $table->timestamps();
         });
