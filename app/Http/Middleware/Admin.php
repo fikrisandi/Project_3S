@@ -17,9 +17,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('administrators')->check())
+        if (Auth::guard('administrators')->check()){
             return $next($request);
-        else 
-            return route('login');
+        }
+        else {
+            return redirect()->route('login');
+        }
     }
 }
