@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\ViewController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controller;
 use App\Models\Administrator;
+use App\Models\Pekerjaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,21 +27,19 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $semua = Auth::guard('administrators')->check();
+    $semua = Pekerjaan::all();
     return dd($semua);
 });
 
 // admin
 Route::group(['prefix' => '', 'middleware' => 'admin'], function () {
-    Route::get('/admin-dashboard', function () {
-        return view('admin.dashboard.content');
-    });
+    Route::get('/admin-dashboard', [ViewController::class, 'index'])->name('admin.view');
     Route::post('/admin-dashboard', [AuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
 });
 
 // user
 Route::group(['prefix' => '', 'middleware' => 'auth'], function () {
-    Route::get('/dashboard', function () {return view('dashboard');});
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 });
 
 // Route::get('/dashboard', function () {
