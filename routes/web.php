@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ViewController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Pekerjaan\ViewController as PekerjaanViewController;
 use App\Models\Administrator;
 use App\Models\Pekerjaan;
 use App\Models\User;
@@ -40,10 +41,17 @@ Route::group(['prefix' => '', 'middleware' => 'admin'], function () {
 // user
 Route::group(['prefix' => '', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
 });
 
 // Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
+    //     return view('dashboard');
+    // })->middleware(['auth'])->name('dashboard');
+Route::get('/pekerjaan', [PekerjaanViewController::class, 'index'])->name('pekerjaan.index');
+Route::get('/pekerjaan/create', [PekerjaanViewController::class, 'create'])->name('pekerjaan.create');
+Route::post('/pekerjaan/create', [PekerjaanViewController::class, 'store'])->name('pekerjaan.store');
+Route::get('/pekerjaan/update/{id}', [PekerjaanViewController::class, 'update'])->name('pekerjaan.update');
+Route::put('/pekerjaan/update', [PekerjaanViewController::class, 'updatePut'])->name('pekerjaan.updatePut');
+Route::delete('/pekerjaan/destroy/{id}', [PekerjaanViewController::class, 'destroy'])->name('pekerjaan.destroy');
+    
 
