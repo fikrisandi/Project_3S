@@ -73,3 +73,7 @@ php artisan make:factory PekerjaanMeetFactory
 php artisan make:factory PekerjaanStatusFactory
 php artisan make:factory PekerjaanKategoriFactory
 php artisan make:factory PekerjaanPembayaranFactory
+
+To do
+- Admin bisa nampilin data dari user dibuat klik (button) -> relasi status dan kategori
+- Admin bisa mengedit, update data dari user yang sudah diinputkan 

@@ -20,6 +20,7 @@
                             <th>user_id</th>
                             <th>kategori_id</th>
                             <th>status_id</th>
+                            <th>action</th>
                         </tr> 
                         @foreach ($pekerjaan as $work)
                         <tr>
@@ -27,9 +28,13 @@
                             <td>{{ $work->file_rab }}</td>
                             <td>{{ $work->file_tor_sw }}</td>
                             <td>{{ $work->file_laporan }}</td>
-                            <td>{{ $work->user_id }}</td>
-                            <td>{{ $work->kategori_id }}</td>
-                            <td>{{ $work->status_id }}</td>
+                            <td>{{ $work->user->name }}</td>
+                            <td>{{ $work->pekerjaan_kategori->kategori }}</td>
+                            <td>{{ $work->pekerjaan_status->status }}</td>
+                            <td>
+                                <a class="btn btn-warning" href="{{ route('pekerjaan.update', ['id' => $work->id]) }}">Update</a>
+                                <a class="btn btn-danger" href="{{ route('pekerjaan.destroy', ['id' => $work->id]) }}">delete </a>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -51,3 +56,6 @@ $table->foreign('kategori_id')->references('id')->on('pekerjaan_kategori');
 $table->bigInteger('status_id');
 $table->foreign('status_id')->references('id')->on('pekerjaan_status');
  -->
+
+
+ 

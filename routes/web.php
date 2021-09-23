@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     $semua = Pekerjaan::all();
-    return dd($semua);
+    return dd($semua[0]->user);
 });
 
 // admin

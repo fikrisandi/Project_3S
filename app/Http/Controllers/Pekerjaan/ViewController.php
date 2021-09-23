@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Pekerjaan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerjaan;
+use App\Models\PekerjaanKategori;
+use App\Models\PekerjaanStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -35,7 +38,10 @@ class ViewController extends Controller
     // menampilkan halaman update
     public function update($id) {
         $pekerjaan = Pekerjaan::findOrFail($id);
-        return view('admin.pekerjaan.update', compact(['pekerjaan']));
+        $users = User::all();
+        $pekerjaan_kategori = PekerjaanKategori::all();
+        $pekerjaan_status = PekerjaanStatus::all();
+        return view('admin.pekerjaan.update', compact(['pekerjaan', 'users', 'pekerjaan_kategori', 'pekerjaan_status']));
     }
 
     //menerima data update dan mengupdate data
