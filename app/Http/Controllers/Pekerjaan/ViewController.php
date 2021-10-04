@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Pekerjaan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerjaan;
+use App\Models\PekerjaanMeet;
 use App\Models\PekerjaanKategori;
+use App\Models\PekerjaanPembayaran;
 use App\Models\PekerjaanStatus;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -31,8 +34,31 @@ class ViewController extends Controller
     // menghapus
     public function destroy ($id) {
         $pekerjaan = Pekerjaan::findOrFail($id);
-        $pekerjaan->delete();
+
+        // handle foreign key
+        $this->setToNullMeet($pekerjaan->id);
+        $this->setToNullPembayaran($pekerjaan->id);
+        $pekerjaan->delete(); // delete
+
         return redirect()->back();
+    }
+
+    public function setToNullMeet($id) {
+        $pekerjaan_meet = PekerjaanMeet::where('pekerjaan_id', $id);
+        try {
+            $pekerjaan_meet->update(array('pekerjaan_id' => null));
+        } catch (Exception $e) {
+            return redirect()->back()->with('gagal', 'gagal delete meet');
+        }
+    }
+
+    public function setToNullPembayaran($id) {
+        $pekerjaan_pembayaran = PekerjaanPembayaran::where('pekerjaan_id', $id);
+        try {
+            $pekerjaan_pembayaran->update(array('pekerjaan_id' => null));
+        } catch (Exception $e) {
+            return redirect()->back()->with('gagal', 'gagal delete pembayaran');
+        }
     }
 
     // menampilkan halaman update
@@ -48,7 +74,20 @@ class ViewController extends Controller
     public function updatePut(Request $request) {
         $pekerjaan = Pekerjaan::findOrFail($request->id);
         $pekerjaan->update($request->all());
+        $pekerjaan->pekerjaan_kategori->update([
+            'deskripsi' => $request->deskripsi
+            // 'deskripsi' mengacu pada atribut yg ada di pekerjaan_kategori,
+            // $request->deskripsi mengacu pada name yang dimasukan pada data form .blade
+        ]);
         return redirect()->back();
+    }
+
+    // detail
+    public function detail($id) {
+        $pekerjaan = Pekerjaan::findOrFail($id); //mencari berdasarkan id
+        $pekerjaan_kategori = PekerjaanKategori::all();
+        $pekerjaan_status = PekerjaanStatus::all();
+        return view('admin.pekerjaan.detail', compact(['pekerjaan', 'pekerjaan_kategori', 'pekerjaan_status']));
     }
 }
 

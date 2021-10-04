@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pekerjaan\ViewController as PekerjaanViewController;
 use App\Models\Administrator;
 use App\Models\Pekerjaan;
+use App\Models\PekerjaanPembayaran;
+use App\Models\PekerjaanMeet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $semua = Pekerjaan::all();
-    return dd($semua[0]->user);
+    return dd(PekerjaanMeet::all());
 });
 
 // admin
@@ -53,5 +54,6 @@ Route::post('/pekerjaan/create', [PekerjaanViewController::class, 'store'])->nam
 Route::get('/pekerjaan/update/{id}', [PekerjaanViewController::class, 'update'])->name('pekerjaan.update');
 Route::put('/pekerjaan/update', [PekerjaanViewController::class, 'updatePut'])->name('pekerjaan.updatePut');
 Route::delete('/pekerjaan/destroy/{id}', [PekerjaanViewController::class, 'destroy'])->name('pekerjaan.destroy');
-    
 
+Route::get('/pekerjaan/detail/{id}', [PekerjaanViewController::class, 'detail'])->name('pekerjaan.detail');
+    

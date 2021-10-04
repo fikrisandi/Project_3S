@@ -19,7 +19,7 @@ class CreatePekerjaanMeet extends Migration
             $table->string('meet_pengajuan_link');
             $table->date('meet_pelaporan_jadwal');
             $table->string('meet_pelaporan_link');
-            $table->bigInteger('pekerjaan_id');
+            $table->bigInteger('pekerjaan_id')->nullable();
             $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
             $table->timestamps();
         });

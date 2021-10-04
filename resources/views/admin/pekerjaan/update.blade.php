@@ -8,25 +8,36 @@
 
 @section('content')
 
-<div class="container-fluid">
-    <div class="container">
-        <form enctype="multipart/form-data" action="{{ route('pekerjaan.updatePut') }}">
+    <div class="container pb-2" >
+        <form enctype="multipart/form-data" action="{{route('pekerjaan.updatePut')}}" method="POST">
+            @method('PUT')
             @csrf
+            <input type="hidden" value="{{ $pekerjaan->id }}" name="id">
             <hr class="my-4" />
             <h6 class="heading-small text-muted mb-4">Data Pekerjaan</h6>
-            <div class="pl-lg-4">
+            <div class="pl-pg-12">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Nama Pekerjaan</label>
-                            <input type="text" id="input-username" class="form-control" placeholder="Username"
-                                value="lucky.jesse">
+                            <input type="text" id="input-username" class="form-control"
+                                value="{{ $pekerjaan->nama_pekerjaan }}" name="nama_pekerjaan">
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group"></div>
+                        <label class="form-control-label" for="input-first-name">Deskripsi</label>
+                        <textarea type="text-area" id="input-username"
+                            class="form-control" name="deskripsi">{{ $pekerjaan->pekerjaan_kategori->deskripsi }}</textarea>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-first-name">User ID</label>
-                            <select class="form-control" id="validationDefault04">
+                            <select class="form-control" id="validationDefault04" disabled name="user_id">
                                 @foreach($users as $user)
                                 <option <?php if($pekerjaan->user->id == $user->id) echo 'selected'?>
                                     value="{{ $user->id }}">{{$user->id}} - {{ $user->name }}</option>
@@ -34,12 +45,10 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-email">Status ID</label>
-                            <select class="form-control" id="validationDefault04">
+                            <select class="form-control" id="validationDefault04" name="status_id">
                                 @foreach($pekerjaan_status as $status)
                                 <option <?php if($pekerjaan->pekerjaan_status->id == $status->id) echo 'selected'?>
                                     value="{{ $status->id }}">{{ $status->status }}</option>
@@ -47,10 +56,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-last-name">Kategori ID</label>
-                            <select class="form-control" id="validationDefault04">
+                            <select class="form-control" id="validationDefault04" name="kategori_id">
                                 @foreach($pekerjaan_kategori as $kategori)
                                 <option <?php if($pekerjaan->pekerjaan_kategori->id == $kategori->id) echo 'selected'?>
                                     value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
@@ -105,9 +114,16 @@
                         placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
                 </div>
             </div>
+            
+            <div class="pl-pg-12">
+                <div class="form-group">
+                    <div class="row " style="justify-content: center;">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
-</div>
 
 @endsection
 

@@ -14,7 +14,7 @@ class PekerjaanKategori extends Model
         'deskripsi'
     ];
 
-    public function pekerjaan_kategori () {
+    public function pekerjaan () {
         return $this->hasMany(PekerjaanKategori::class, 'pekerjaan_id', 'id');
     }
 }

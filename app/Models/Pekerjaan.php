@@ -24,6 +24,8 @@ class Pekerjaan extends Model
     public function user () {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+
     public function pekerjaan_meet () {
         return $this->hasMany(PekerjaanMeet::class, 'pekerjaan_id', 'id');
     }
