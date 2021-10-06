@@ -79,6 +79,20 @@ class ViewController extends Controller
             // 'deskripsi' mengacu pada atribut yg ada di pekerjaan_kategori,
             // $request->deskripsi mengacu pada name yang dimasukan pada data form .blade
         ]);
+        $pekerjaan->pekerjaan_meet->update([
+            'meet_pengajuan_jadwal' => $request->meet_pengajuan_jadwal,
+            'meet_pengajuan_link' => $request->meet_pengajuan_link,
+            'meet_pelaporan_jadwal' => $request->meet_pelaporan_jadwal,
+            'meet_pelaporan_link' => $request->meet_pelaporan_link
+        ]);
+        $pekerjaan->pekerjaan_pembayaran->update([
+            'pembayaran_total' => $request->pembayaran_total,
+            'pembayaran_dp' => $request->pembayaran_dp,
+            'pembayaran_dp_bukti' => $request->bukti_dp,
+            'pembayaran_sisa' => $request->pembayaran_sisa,
+            'pembayaran_sisa_bukti' => $request->bukti_sisa
+        ]);
+
         return redirect()->back();
     }
 
@@ -102,4 +116,25 @@ $table->bigInteger('kategori_id');
 $table->foreign('kategori_id')->references('id')->on('pekerjaan_kategori');
 $table->bigInteger('status_id');
 $table->foreign('status_id')->references('id')->on('pekerjaan_status');
+
+Schema::create('pekerjaan_meet', function (Blueprint $table) {
+$table->id();
+$table->date('meet_pengajuan_jadwal');
+$table->string('meet_pengajuan_link');
+$table->date('meet_pelaporan_jadwal');
+$table->string('meet_pelaporan_link');
+$table->bigInteger('pekerjaan_id')->nullable();
+$table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
+$table->timestamps();
+});
+
+$table->id();
+$table->decimal('pembayaran_total',10,2);
+$table->decimal('pembayaran_dp',10,2);
+$table->string('pembayaran_dp_bukti');
+$table->decimal('pembayaran_sisa',10,2);
+$table->string('pembayaran_sisa_bukti');
+$table->bigInteger('pekerjaan_id')->nullable();
+$table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
+$table->timestamps();
 */

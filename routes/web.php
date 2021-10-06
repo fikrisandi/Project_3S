@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ViewController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pekerjaan\ViewController as PekerjaanViewController;
+use App\Http\Controllers\User\ViewController as UserViewController;
 use App\Models\Administrator;
 use App\Models\Pekerjaan;
 use App\Models\PekerjaanPembayaran;
@@ -29,8 +30,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//untuk cek 
 Route::get('/test', function () {
-    return dd(PekerjaanMeet::all());
+    return dd( Auth::guard('users')->user()->pekerjaan );
 });
 
 // admin
@@ -40,10 +42,18 @@ Route::group(['prefix' => '', 'middleware' => 'admin'], function () {
 });
 
 // user
-Route::group(['prefix' => '', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '', 'middleware' => 'user'], function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-
+    Route::get('/user/pekerjaan', [UserViewController::class, 'index'])->name('user.pekerjaan.index');
 });
+
+// Route::get('/pekerjaan/create', [PekerjaanViewController::class, 'create'])->name('pekerjaan.create');
+// Route::post('/pekerjaan/create', [PekerjaanViewController::class, 'store'])->name('pekerjaan.store');
+// Route::get('/pekerjaan/update/{id}', [PekerjaanViewController::class, 'update'])->name('pekerjaan.update');
+// Route::put('/pekerjaan/update', [PekerjaanViewController::class, 'updatePut'])->name('pekerjaan.updatePut');
+// Route::delete('/pekerjaan/destroy/{id}', [PekerjaanViewController::class, 'destroy'])->name('pekerjaan.destroy');
+// Route::get('/pekerjaan/detail/{id}', [PekerjaanViewController::class, 'detail'])->name('pekerjaan.detail');
+    
 
 // Route::get('/dashboard', function () {
     //     return view('dashboard');
@@ -54,6 +64,5 @@ Route::post('/pekerjaan/create', [PekerjaanViewController::class, 'store'])->nam
 Route::get('/pekerjaan/update/{id}', [PekerjaanViewController::class, 'update'])->name('pekerjaan.update');
 Route::put('/pekerjaan/update', [PekerjaanViewController::class, 'updatePut'])->name('pekerjaan.updatePut');
 Route::delete('/pekerjaan/destroy/{id}', [PekerjaanViewController::class, 'destroy'])->name('pekerjaan.destroy');
-
 Route::get('/pekerjaan/detail/{id}', [PekerjaanViewController::class, 'detail'])->name('pekerjaan.detail');
     

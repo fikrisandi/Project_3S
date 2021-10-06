@@ -18,13 +18,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
-        // $this->call(AdministratorSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(AdministratorSeeder::class);
         PekerjaanStatus::factory()->count(3)->create();
         PekerjaanKategori::factory()->count(3)->create();
-        Pekerjaan::factory()->count(3)->create();
-        PekerjaanMeet::factory()->count(3)->create();
-        PekerjaanPembayaran::factory()->count(3)->create();
+
+        Pekerjaan::factory()
+            ->has( PekerjaanMeet::factory() )
+            ->has( PekerjaanPembayaran::factory() )
+            ->count(3)
+            ->create();
+
         // php artisan db:seed
     }
 }

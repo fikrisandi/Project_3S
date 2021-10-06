@@ -71,28 +71,22 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-address">Pembayaran DP</label>
-                            @foreach($pekerjaan->pekerjaan_pembayaran as $pembayaran)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $pembayaran->pembayaran_dp }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control" disabled name="pembayaran_dp"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_dp }}">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-city">Sisa Pembayaran DP</label>
-                            @foreach($pekerjaan->pekerjaan_pembayaran as $pembayaran)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $pembayaran->pembayaran_sisa}}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control" disabled name="pembayaran_sisa"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_sisa}}">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-country">Pembayaran Total</label>
-                            @foreach($pekerjaan->pekerjaan_pembayaran as $pembayaran)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $pembayaran->pembayaran_total }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control"disabled name="pembayaran_total"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_total }}">
                         </div>
                     </div>
                 </div>
@@ -100,19 +94,15 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-country">Bukti DP</label>
-                            @foreach($pekerjaan->pekerjaan_pembayaran as $pembayaran)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $pembayaran->pembayaran_dp_bukti }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control"disabled name="bukti_dp"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_dp_bukti }}">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-country">Bukti Sisa</label>
-                            @foreach($pekerjaan->pekerjaan_pembayaran as $pembayaran)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $pembayaran->pembayaran_sisa_bukti }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control" disabled name="bukti_sisa"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_sisa_bukti }}">
                         </div>
                     </div>
                 </div>
@@ -125,19 +115,15 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-address">Meet Pengajuan Jadwal</label>
-                            @foreach($pekerjaan->pekerjaan_meet as $meet)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $meet->meet_pengajuan_jadwal }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control" disabled name="meet_pengajuan_jadwal"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pengajuan_jadwal }}" >
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-city">Meet Pengajuan Link</label>
-                            @foreach($pekerjaan->pekerjaan_meet as $meet)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $meet->meet_pengajuan_link }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control"disabled name="meet_pengajuan_link"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pengajuan_link }}" >
                         </div>
                     </div>
                 </div>
@@ -145,24 +131,26 @@
                 <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-address">Meet Pelaporan Jadwal</label>
-                            @foreach($pekerjaan->pekerjaan_meet as $meet)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $meet->meet_pelaporan_jadwal }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control"disabled name="meet_pelaporan_jadwal"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pelaporan_jadwal }}" >
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-city">Meet Pelaporan Link</label>
-                            @foreach($pekerjaan->pekerjaan_meet as $meet)
-                            <input type="text" id="input-username" class="form-control"
-                                value="{{ $meet->meet_pelaporan_link }}" disabled>
-                            @endforeach
+                            <input type="text" id="input-username" class="form-control"disabled name="meet_pelaporan_link"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pelaporan_link }}">
                         </div>
                     </div>
+                </div>   
+            </div>
+            <div class="pl-pg-12">
+            <div class="form-group">
+                <div class="row" style="justify-content: center;">
+                    <a href="{{ route('pekerjaan.index')}}" class="btn btn-danger" type="back">Kembali</a>
                 </div>
             </div>
-            <button></button>
+        </div>
         </form>
     </div>
 </div>

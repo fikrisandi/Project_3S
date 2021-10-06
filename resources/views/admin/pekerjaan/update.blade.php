@@ -15,7 +15,7 @@
             <input type="hidden" value="{{ $pekerjaan->id }}" name="id">
             <hr class="my-4" />
             <h6 class="heading-small text-muted mb-4">Data Pekerjaan</h6>
-            <div class="pl-pg-12">
+            <div class="pl-lg-4">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -48,7 +48,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-email">Status ID</label>
-                            <select class="form-control" id="validationDefault04" name="status_id">
+                            <select class="form-control" id="validationDefault04" disabled name="status_id">
                                 @foreach($pekerjaan_status as $status)
                                 <option <?php if($pekerjaan->pekerjaan_status->id == $status->id) echo 'selected'?>
                                     value="{{ $status->id }}">{{ $status->status }}</option>
@@ -59,7 +59,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-last-name">Kategori ID</label>
-                            <select class="form-control" id="validationDefault04" name="kategori_id">
+                            <select class="form-control" id="validationDefault04" disabled name="kategori_id">
                                 @foreach($pekerjaan_kategori as $kategori)
                                 <option <?php if($pekerjaan->pekerjaan_kategori->id == $kategori->id) echo 'selected'?>
                                     value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
@@ -70,56 +70,91 @@
                 </div>
             </div>
             <hr class="my-4" />
-            <!-- Address -->
-            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <!-- Pembayaran -->
+            <h6 class="heading-small text-muted mb-4">Pembayaran</h6>
             <div class="pl-lg-4">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-address">Address</label>
-                            <input id="input-address" class="form-control" placeholder="Home Address"
-                                value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                            <label class="form-control-label" for="input-address">Pembayaran DP</label>
+                            <input type="text" id="input-username" class="form-control" name="pembayaran_dp"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_dp }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-city">Sisa Pembayaran DP</label>
+                            <input type="text" id="input-username" class="form-control" name="pembayaran_sisa"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_sisa}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-country">Pembayaran Total</label>
+                            <input type="text" id="input-username" class="form-control" name="pembayaran_total"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_total }}">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-city">City</label>
-                            <input type="text" id="input-city" class="form-control" placeholder="City" value="New York">
+                            <label class="form-control-label" for="input-country">Bukti DP</label>
+                            <input type="text" id="input-username" class="form-control" name="bukti_dp"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_dp_bukti }}">
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-country">Country</label>
-                            <input type="text" id="input-country" class="form-control" placeholder="Country"
-                                value="United States">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-country">Postal code</label>
-                            <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
+                            <label class="form-control-label" for="input-country">Bukti Sisa</label>
+                            <input type="text" id="input-username" class="form-control" name="bukti_sisa"
+                                value="{{ $pekerjaan->pekerjaan_pembayaran->pembayaran_sisa_bukti }}">
                         </div>
                     </div>
                 </div>
             </div>
             <hr class="my-4" />
-            <!-- Description -->
-            <h6 class="heading-small text-muted mb-4">About me</h6>
+            <!-- MEET -->
+            <h6 class="heading-small text-muted mb-4">Meet</h6>
             <div class="pl-lg-4">
-                <div class="form-group">
-                    <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control"
-                        placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                </div>
-            </div>
-            
-            <div class="pl-pg-12">
-                <div class="form-group">
-                    <div class="row " style="justify-content: center;">
-                        <button class="btn btn-primary" type="submit">Update</button>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-address">Meet Pengajuan Jadwal</label>
+                            <input type="text" id="input-username" class="form-control" name="meet_pengajuan_jadwal"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pengajuan_jadwal }}" >
+                        </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-city">Meet Pengajuan Link</label>
+                            <input type="text" id="input-username" class="form-control" name="meet_pengajuan_link"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pengajuan_link }}" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-address">Meet Pelaporan Jadwal</label>
+                            <input type="text" id="input-username" class="form-control" name="meet_pelaporan_jadwal"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pelaporan_jadwal }}" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-city">Meet Pelaporan Link</label>
+                            <input type="text" id="input-username" class="form-control" name="meet_pelaporan_link"
+                                value="{{ $pekerjaan->pekerjaan_meet->meet_pelaporan_link }}">
+                        </div>
+                    </div>
+                </div>   
+            </div>
+            <div class="pl-pg-12">
+            <div class="form-group">
+                <div class="row" style="justify-content: space-evenly;">
+                    <a href="{{ route('pekerjaan.index')}}" class="btn btn-danger" type="back">Kembali</a>
+                    <button class="btn btn-primary" type="submit">Update</button>
                 </div>
             </div>
         </form>

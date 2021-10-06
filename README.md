@@ -75,5 +75,12 @@ php artisan make:factory PekerjaanKategoriFactory
 php artisan make:factory PekerjaanPembayaranFactory
 
 To do
-- Admin bisa nampilin data dari user dibuat klik (button) -> relasi status dan kategori
-- Admin bisa mengedit, update data dari user yang sudah diinputkan 
+- Admin bisa nampilin data dari user dibuat klik (button) -> relasi status dan kategori (done)
+- Admin bisa mengedit, update data dari user yang sudah diinputkan (done)
+
+
+To do 
+- Dashboard User
+- Tahap2 Pekerjaan
+- User mengisi data pribadi ketika register
+- dan ketika login nanti akan langsung ke dashboard

@@ -26,10 +26,16 @@ class Pekerjaan extends Model
     }
 
 
+    public function pekerjaanMeet () {
+        return $this->pekerjaan_meet();
+    }
     public function pekerjaan_meet () {
-        return $this->hasMany(PekerjaanMeet::class, 'pekerjaan_id', 'id');
+        return $this->hasOne(PekerjaanMeet::class, 'pekerjaan_id', 'id');
+    }
+    public function pekerjaanPembayaran () {
+        return $this->pekerjaan_pembayaran();
     }
     public function pekerjaan_pembayaran () {
-        return $this->hasMany(PekerjaanPembayaran::class, 'pekerjaan_id', 'id');
+        return $this->hasOne(PekerjaanPembayaran::class, 'pekerjaan_id', 'id');
     }
 }

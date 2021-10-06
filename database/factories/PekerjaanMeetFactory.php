@@ -27,7 +27,7 @@ class PekerjaanMeetFactory extends Factory
             'meet_pengajuan_link' => $this->faker->url(),
             'meet_pelaporan_jadwal' => $this->faker->date(),
             'meet_pelaporan_link' => $this->faker->url(),
-            'pekerjaan_id' => Pekerjaan::all()->random()->id
+            // 'pekerjaan_id' => Pekerjaan::all()->random()->id
         ];
     }
 }
