@@ -1,5 +1,11 @@
 @extends('user.layout')
 
+@section('nav')
+    @include('user.nav', ['active' => 'user.pekerjaan.index', 'name' => 'Dashboard'])
+    <!-- active berisi routing yang sedang digunakan -->
+    <!-- name berisi nama page yang sedang dibuka -->
+@endsection
+
 @section('header')
 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
     {{ __('Dashboard') }}

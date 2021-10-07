@@ -37,34 +37,22 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-first-name">User ID</label>
-                            <select class="form-control" id="validationDefault04" disabled name="user_id">
-                                @foreach($users as $user)
-                                <option <?php if($pekerjaan->user->id == $user->id) echo 'selected'?>
-                                    value="{{ $user->id }}">{{$user->id}} - {{ $user->name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" id="input-username" class="form-control" disabled
+                                value="{{$pekerjaan->user->id}}" name="user_id">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-email">Status ID</label>
-                            <select class="form-control" id="validationDefault04" disabled name="status_id">
-                                @foreach($pekerjaan_status as $status)
-                                <option <?php if($pekerjaan->pekerjaan_status->id == $status->id) echo 'selected'?>
-                                    value="{{ $status->id }}">{{ $status->status }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" id="input-username" class="form-control" disabled
+                                value="{{$pekerjaan->pekerjaan_status->id}}" name="status_id">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-last-name">Kategori ID</label>
-                            <select class="form-control" id="validationDefault04" disabled name="kategori_id">
-                                @foreach($pekerjaan_kategori as $kategori)
-                                <option <?php if($pekerjaan->pekerjaan_kategori->id == $kategori->id) echo 'selected'?>
-                                    value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" id="input-username" class="form-control" disabled
+                                value="{{$pekerjaan->pekerjaan_kategori->id}}" name="kategori_id">
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ use App\Models\Pekerjaan;
 use App\Models\PekerjaanPembayaran;
 use App\Models\PekerjaanMeet;
 use App\Models\User;
+use App\Models\UserIdentitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,7 @@ Route::get('/', function () {
 
 //untuk cek 
 Route::get('/test', function () {
-    return dd( Auth::guard('users')->user()->pekerjaan );
+    return dd( UserIdentitas::all() );
 });
 
 // admin
@@ -45,6 +46,8 @@ Route::group(['prefix' => '', 'middleware' => 'admin'], function () {
 Route::group(['prefix' => '', 'middleware' => 'user'], function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/user/pekerjaan', [UserViewController::class, 'index'])->name('user.pekerjaan.index');
+    Route::get('/user/profil', [UserViewController::class, 'profile'])->name('user.profile');
+    Route::put('/user/profil', [UserViewController::class, 'updatePut'])->name('user.updatePut');
 });
 
 // Route::get('/pekerjaan/create', [PekerjaanViewController::class, 'create'])->name('pekerjaan.create');

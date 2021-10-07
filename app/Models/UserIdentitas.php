@@ -18,9 +18,10 @@ class UserIdentitas extends Model
         'jenis_kelamin',
         'pendidikan_terakhir',
         'profesi',
-        'nama_perusahan',
+        'nama_perusahaan',
         'foto_ktp',
-        'nik'
+        'nik',
+        'user_id',
     ];
 
     public function user () {

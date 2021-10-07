@@ -73,7 +73,9 @@ class ViewController extends Controller
     //menerima data update dan mengupdate data
     public function updatePut(Request $request) {
         $pekerjaan = Pekerjaan::findOrFail($request->id);
-        $pekerjaan->update($request->all());
+        $pekerjaan->update([
+            'nama_pekerjaan' => $request->nama_pekerjaan
+        ]);
         $pekerjaan->pekerjaan_kategori->update([
             'deskripsi' => $request->deskripsi
             // 'deskripsi' mengacu pada atribut yg ada di pekerjaan_kategori,

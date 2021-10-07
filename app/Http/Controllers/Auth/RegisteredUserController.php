@@ -49,6 +49,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // diredirect ke mengisi profil
+        return redirect()->route('user.profile');
+
+        // return redirect(RouteServiceProvider::HOME);
     }
 }

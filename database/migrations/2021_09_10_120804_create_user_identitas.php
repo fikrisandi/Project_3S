@@ -23,7 +23,7 @@ class CreateUserIdentitas extends Migration
             $table->boolean('jenis_kelamin'); // masih rancu
             $table->string('pendidikan_terakhir');
             $table->string('profesi');
-            $table->string('nama_perusahan');
+            $table->string('nama_perusahaan');
             $table->string('foto_ktp');
             $table->string('nik'); // masih rancu
             $table->bigInteger('user_id');
