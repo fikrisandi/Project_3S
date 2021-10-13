@@ -13,7 +13,8 @@ class PekerjaanMeet extends Model
         'meet_pengajuan_jadwal',
         'meet_pengajuan_link',
         'meet_pelaporan_jadwal',
-        'meet_pelaporan_link'
+        'meet_pelaporan_link',
+        'pekerjaan_id'
     ];
 
     public function pekerjaan () {

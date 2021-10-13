@@ -17,9 +17,9 @@ class CreatePekerjaanPembayaran extends Migration
             $table->id();
             $table->decimal('pembayaran_total',10,2);
             $table->decimal('pembayaran_dp',10,2);
-            $table->string('pembayaran_dp_bukti');
-            $table->decimal('pembayaran_sisa',10,2);
-            $table->string('pembayaran_sisa_bukti');
+            $table->string('pembayaran_dp_bukti')->nullable();
+            $table->decimal('pembayaran_sisa',10,2)->nullable();
+            $table->string('pembayaran_sisa_bukti')->nullable();
             $table->bigInteger('pekerjaan_id')->nullable();
             $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
             $table->timestamps();

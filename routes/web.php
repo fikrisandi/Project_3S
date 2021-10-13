@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\ViewController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pekerjaan\ViewController as PekerjaanViewController;
+use App\Http\Controllers\User\ApplyTahapDuaController;
+use App\Http\Controllers\User\ApplyTahapEmpatController;
+use App\Http\Controllers\User\ApplyTahapSatuController;
+use App\Http\Controllers\User\ApplyTahapTigaController;
 use App\Http\Controllers\User\ViewController as UserViewController;
 use App\Models\Administrator;
 use App\Models\Pekerjaan;
@@ -33,7 +37,7 @@ Route::get('/', function () {
 
 //untuk cek 
 Route::get('/test', function () {
-    return dd( UserIdentitas::all() );
+    return dd( Auth::guard('users')->user()->id );
 });
 
 // admin
@@ -48,7 +52,20 @@ Route::group(['prefix' => '', 'middleware' => 'user'], function () {
     Route::get('/user/pekerjaan', [UserViewController::class, 'index'])->name('user.pekerjaan.index');
     Route::get('/user/profil', [UserViewController::class, 'profile'])->name('user.profile');
     Route::put('/user/profil', [UserViewController::class, 'updatePut'])->name('user.updatePut');
+
+    // buat nampilin halaman
+    Route::get('/user/apply/1', [ApplyTahapSatuController::class, 'applySatu'])->name('user.apply.1');
+    Route::get('/user/apply/2/{pekerjaan_id}', [ApplyTahapDuaController::class, 'applyDua'])->name('user.apply.2');
+    Route::get('/user/apply/3/{pekerjaan_id}', [ApplyTahapTigaController::class, 'applyTiga'])->name('user.apply.3');
+    Route::get('/user/apply/4/{pekerjaan_id}', [ApplyTahapEmpatController::class, 'applyEmpat'])->name('user.apply.4');
+
+    //buat menerima input
+    Route::put('/user/apply/1', [ApplyTahapSatuController::class, 'applyPutSatu'])->name('user.apply.1.put');
+    Route::put('/user/apply/2/{pekerjaan_id}', [ApplyTahapDuaController::class, 'applyPutDua'])->name('user.apply.2.put');
+    Route::put('/user/apply/3/{pekerjaan_id}', [ApplyTahapTigaController::class, 'applyPutTiga'])->name('user.apply.3.put');
+    Route::put('/user/apply/4/{pekerjaan_id}', [ApplyTahapEmpatController::class, 'applyPutEmpat'])->name('user.apply.4.put');
 });
+
 
 // Route::get('/pekerjaan/create', [PekerjaanViewController::class, 'create'])->name('pekerjaan.create');
 // Route::post('/pekerjaan/create', [PekerjaanViewController::class, 'store'])->name('pekerjaan.store');

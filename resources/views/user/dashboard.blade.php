@@ -33,8 +33,8 @@
                         <td>{{ $work->file_rab }}</td>
                         <td>{{ $work->file_tor_sw }}</td>
                         <td>{{ $work->file_laporan }}</td>
-                        <td>{{ $work->pekerjaan_kategori->kategori }}</td>
-                        <td>{{ $work->pekerjaan_status->status }}</td>
+                        <td>{{ $work->pekerjaan_kategori ? $work->pekerjaan_kategori->kategori : '' }}</td>
+                        <td>{{ $work->pekerjaan_status ? $work->pekerjaan_status->status : '' }}</td>
                         <td class="row d-flex justify-content-evenly">
                             <div class="col-4">
                                 <a class="btn btn-warning" href="#">Update</a>

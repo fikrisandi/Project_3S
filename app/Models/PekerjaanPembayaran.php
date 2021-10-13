@@ -14,7 +14,8 @@ class PekerjaanPembayaran extends Model
         'pembayaran_dp',
         'pembayaran_dp_bukti',
         'pembayaran_sisa',
-        'pembayaran_sisa_bukti'
+        'pembayaran_sisa_bukti',
+        'pekerjaan_id'
     ];
 
     public function pekerjaan () {

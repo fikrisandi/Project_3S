@@ -13,7 +13,10 @@ class Pekerjaan extends Model
         'nama_pekerjaan',
         'file_rab',
         'file_tor_sw',
-        'file_laporan'
+        'file_laporan',
+        'user_id',
+        'status_id',
+        'kategori_id'
     ];
     public function pekerjaan_kategori () {
         return $this->belongsTo(PekerjaanKategori::class, 'kategori_id', 'id');

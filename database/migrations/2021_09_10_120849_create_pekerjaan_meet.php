@@ -15,10 +15,10 @@ class CreatePekerjaanMeet extends Migration
     {
         Schema::create('pekerjaan_meet', function (Blueprint $table) {
             $table->id();
-            $table->date('meet_pengajuan_jadwal');
-            $table->string('meet_pengajuan_link');
-            $table->date('meet_pelaporan_jadwal');
-            $table->string('meet_pelaporan_link');
+            $table->date('meet_pengajuan_jadwal')->nullable();
+            $table->string('meet_pengajuan_link')->nullable();
+            $table->date('meet_pelaporan_jadwal')->nullable();
+            $table->string('meet_pelaporan_link')->nullable();
             $table->bigInteger('pekerjaan_id')->nullable();
             $table->foreign('pekerjaan_id')->references('id')->on('pekerjaan');
             $table->timestamps();
