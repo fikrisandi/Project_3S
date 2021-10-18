@@ -36,8 +36,8 @@
                         <td>{{ $work->pekerjaan_kategori ? $work->pekerjaan_kategori->kategori : '' }}</td>
                         <td>{{ $work->pekerjaan_status ? $work->pekerjaan_status->status : '' }}</td>
                         <td class="row d-flex justify-content-evenly">
-                            <div class="col-4">
-                                <a class="btn btn-warning" href="#">Update</a>
+                            <div class="col-4"></div>
+                                <a class="btn btn-warning" href="{{ route('update-pekerjaan', ['pekerjaan_id' => $work->id]) }}">Update</a>
                             </div>
                             <div class="col-4">
                                 <a class="btn btn-success" href="#">Detail </a>

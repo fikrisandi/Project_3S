@@ -45,7 +45,7 @@ class ApplyTahapSatuController extends Controller
             $file_rab_name = str_replace(' ', '-', strtolower($file_rab_name)); // typedata : string
             $file_rab->storeAs('public', $file_rab_name); // memanggil function untuk menaruh file di storage
         }
-        return asset('storage') . '/' . $file_rab; // me return path/to/file.ext
+        return asset('storage') . '/' . $file_rab_name; // me return path/to/file.ext
     }
 
     public function fileTOR (Request $request, $id) {
@@ -56,7 +56,7 @@ class ApplyTahapSatuController extends Controller
             $file_tor_sw_name = str_replace(' ', '-', strtolower($file_tor_sw_name));
             $file_tor_sw->storeAs('public', $file_tor_sw_name);
         }
-        return asset('storage') . '/' . $file_tor_sw;
+        return asset('storage') . '/' . $file_tor_sw_name;
     }
 
 

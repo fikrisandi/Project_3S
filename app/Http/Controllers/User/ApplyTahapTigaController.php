@@ -13,15 +13,19 @@ class ApplyTahapTigaController extends Controller
     }
 
     public function applyPutTiga (Request $request) {
-        $pekerjaan = PekerjaanPembayaran::create([
+        $pekerjaan_pembayaran = PekerjaanPembayaran::create([
             'pembayaran_total' => $request->pembayaran_total,
             'pembayaran_dp' => $request->pembayaran_dp,
             'pekerjaan_id' => $request->pekerjaan_id,
             // 'pembayaran_dp_bukti' => $request->pembayaran_dp_bukti
         ]);
 
-        $pekerjaan->update([
+        $pekerjaan_pembayaran->update([
             'pembayaran_dp_bukti' => $this->pembayaranDpBukti($request)
+        ]);
+
+        $pekerjaan_pembayaran->pekerjaan->update([
+            'status_id' => 3
         ]);
 
         return redirect()->route('user.apply.4', ['pekerjaan_id' => $request->pekerjaan_id])->with('success', 'berhasil ditambahkan');
@@ -35,6 +39,6 @@ class ApplyTahapTigaController extends Controller
             $pembayaran_dp_bukti_name = str_replace(' ', '-', strtolower($pembayaran_dp_bukti_name)); // typedata : string
             $pembayaran_dp_bukti->storeAs('public', $pembayaran_dp_bukti_name); // memanggil function untuk menaruh file di storage
         }
-        return asset('storage') . '/' . $pembayaran_dp_bukti; // me return path/to/file.ext
+        return asset('storage') . '/' . $pembayaran_dp_bukti_name; // me return path/to/file.ext
     }
 }

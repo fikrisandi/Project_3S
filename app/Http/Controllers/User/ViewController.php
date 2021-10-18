@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Pekerjaan;
 use App\Models\User;
 use App\Models\UserIdentitas;
+use Illuminate\Support\Facades\Storage;
 
 class ViewController extends Controller
 {
@@ -20,6 +21,30 @@ class ViewController extends Controller
     // menampilkan halaman isi profil
     public function profile(){
         return view('user.profile');
+    }
+
+    public function updatepekerjaan($pekerjaan_id){
+        $pekerjaan = Pekerjaan::findOrFail($pekerjaan_id);
+        return view('user.update-pekerjaan', compact(['pekerjaan']));
+    }
+
+    public function updatePutPekerjaan(Request $request) {
+        $pekerjaan = Pekerjaan::findOrFail($request->id_pekerjaan);
+        
+        if ($request->input_del_file_rab == '1') {
+            Storage::delete($pekerjaan->file_rab);
+            $pekerjaan->update([
+                'file_rab' => '', // string
+            ]);
+        }
+
+        if ($request->file_rab) {
+            $pekerjaan->update([
+                'file_rab' => $this->fileRAB($request, $pekerjaan->id), // string
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     public function updatePut(Request $request){
@@ -60,6 +85,17 @@ class ViewController extends Controller
         }
 
         return redirect()->route('user.pekerjaan.index');
+    }
+
+    public function fileRAB (Request $request, $id) {
+        $file_rab = $request->file_rab; // typedata : file
+        $file_rab_name = ''; // typedata : string
+        if ($file_rab !== NULL){
+            $file_rab_name = 'file_rab' . '-' . $id . "." . $file_rab->extension(); // typedata : string
+            $file_rab_name = str_replace(' ', '-', strtolower($file_rab_name)); // typedata : string
+            $file_rab->storeAs('public', $file_rab_name); // memanggil function untuk menaruh file di storage
+        }
+        return asset('storage') . '/' . $file_rab_name; // me return path/to/file.ext
     }
 }
 

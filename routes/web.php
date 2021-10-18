@@ -64,6 +64,9 @@ Route::group(['prefix' => '', 'middleware' => 'user'], function () {
     Route::put('/user/apply/2/{pekerjaan_id}', [ApplyTahapDuaController::class, 'applyPutDua'])->name('user.apply.2.put');
     Route::put('/user/apply/3/{pekerjaan_id}', [ApplyTahapTigaController::class, 'applyPutTiga'])->name('user.apply.3.put');
     Route::put('/user/apply/4/{pekerjaan_id}', [ApplyTahapEmpatController::class, 'applyPutEmpat'])->name('user.apply.4.put');
+
+    Route::get('update/pekerjaan/{pekerjaan_id}', [UserViewController::class, 'updatePekerjaan'])->name('update-pekerjaan');
+    Route::put('update/pekerjaan', [UserViewController::class, 'updatePutPekerjaan'])->name('update-pekerjaan.put');
 });
 
 

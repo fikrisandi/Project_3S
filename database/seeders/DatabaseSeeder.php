@@ -20,7 +20,18 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(AdministratorSeeder::class);
-        PekerjaanStatus::factory()->count(3)->create();
+        PekerjaanStatus::factory()
+            ->state(['status' => 'state_1'])
+            ->create();
+        PekerjaanStatus::factory()
+            ->state(['status' => 'state_2'])
+            ->create();
+        PekerjaanStatus::factory()
+            ->state(['status' => 'state_3'])
+            ->create();
+        PekerjaanStatus::factory()
+            ->state(['status' => 'state_4'])
+            ->create();
         // PekerjaanKategori::factory()->count(3)->create();
 
         // Pekerjaan::factory()
