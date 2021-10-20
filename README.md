@@ -84,3 +84,5 @@ To do
 - Tahap2 Pekerjaan
 - User mengisi data pribadi ketika register
 - dan ketika login nanti akan langsung ke dashboard
+
+menyimpan nama file saja di db

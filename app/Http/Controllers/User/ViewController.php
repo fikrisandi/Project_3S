@@ -44,6 +44,62 @@ class ViewController extends Controller
             ]);
         }
 
+        if ($request->input_del_file_tor == '1') {
+            Storage::delete($pekerjaan->file_tor);
+            $pekerjaan->update([
+                'file_tor_sw' => '', // string
+            ]);
+            // dd($pekerjaan->file_tor);
+        }
+
+        if ($request->file_tor) {
+            $pekerjaan->update([
+                'file_tor_sw' => $this->fileTOR($request, $pekerjaan->id), // string
+            ]);
+        }
+
+        if ($request->input_del_file_dp_bukti == '1') {
+            Storage::delete($pekerjaan->file_dp_bukti);
+            $pekerjaan->update([
+                'pembayaran_dp_bukti' => '', // string
+            ]);
+            // dd($pekerjaan->file_tor);
+        }
+
+        if ($request->file_dp_bukti) {
+            $pekerjaan->update([
+                'pembayaran_dp_bukti' => $this->fileDPBukti($request, $pekerjaan->id), // string
+            ]);
+        }
+
+        if ($request->input_del_file_report_pekerjaan == '1') {
+            Storage::delete($pekerjaan->file_report_pekerjaan);
+            $pekerjaan->update([
+                'file_laporan' => '', // string
+            ]);
+            // dd($pekerjaan->file_tor);
+        }
+
+        if ($request->file_report_pekerjaan) {
+            $pekerjaan->update([
+                'file_laporan' => $this->fileLaporan($request, $pekerjaan->id), // string
+            ]);
+        }
+
+        if ($request->input_del_file_sisa_bukti == '1') {
+            Storage::delete($pekerjaan->file_sisa_bukti);
+            $pekerjaan->update([
+                'pembayaran_sisa_bukti' => '', // string
+            ]);
+            // dd($pekerjaan->file_tor);
+        }
+
+        if ($request->file_sisa_bukti) {
+            $pekerjaan->update([
+                'pembayaran_sisa_bukti' => $this->fileSisaBukti($request, $pekerjaan->id), // string
+            ]);
+        }
+
         return redirect()->back();
     }
 

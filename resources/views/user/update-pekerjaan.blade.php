@@ -52,9 +52,9 @@
                     <label class="form-control-label" for="input-username">File TOR/SOW</label>
                     <div class="d-flex justify-content-around">
                         <a href="{{ $pekerjaan->file_tor_sw }}">FILE TOR lama</a>
-                        <button type="button" id="btn-del-file-rab" class="btn btn-danger">hapus</button>
+                        <button type="button" id="btn-del-file-tor" class="btn btn-danger">hapus</button>
                     </div>
-
+                    <input id="input_del_file_tor" type="hidden" name="input_del_file_tor">
                     <input type="file" id="input-username" class="form-control" name="file_tor_sw">
                 </div>
             </div>
@@ -93,14 +93,18 @@
                 <div class="form-group">
                     <label class="form-control-label" for="input-username">Pembayaran DP</label>
                     <input type="text" id="input-username" class="form-control" name="pembayaran_dp"
-                        value="{{ $pekerjaan->pembayaran_dp }}">
+                    value="{{ $pekerjaan->pembayaran_dp}}">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label class="form-control-label" for="input-username">Pembayaran DP Bukti</label>
-                    <input type="file" id="input-username" class="form-control" name="pembayaran_dp_bukti"
-                        value="{{ $pekerjaan->pembayaran_dp_bukti }}">
+                    <div class="d-flex justify-content-around">
+                        <a href="{{ $pekerjaan->pembayaran_dp_bukti}}">Pembayaran DP Bukti</a>
+                        <button type="button" id="btn-del-file-dp-bukti" class="btn btn-danger">hapus</button>
+                    </div>
+                    <input id="input_del_file_tor" type="hidden" name="input_del_file_dp_bukti">
+                    <input type="file" id="input-username" class="form-control" name="pembayaran_dp_bukti">
                 </div>
             </div>
         </div>
@@ -111,12 +115,22 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label class="form-control-label" for="input-username">Download Report Pekerjaan</label>
+                    <div class="d-flex justify-content-around">
+                        <a href="{{ $pekerjaan->file_laporan}}">Download Report Pekerjaan</a>
+                        <button type="button" id="btn-del-file-laporan" class="btn btn-danger">hapus</button>
+                    </div>
+                    <input id="input_del_file_laporan" type="hidden" name="input_del_file_laporan">
                     <input type="file" id="input-username" class="form-control" name="file_laporan">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label class="form-control-label" for="input-username">Pembayaran Sisa Bukti</label>
+                    <div class="d-flex justify-content-around">
+                        <a href="{{ $pekerjaan->pembayaran_sisa_bukti}}">Pembayaran Sisa Bukti</a>
+                        <button type="button" id="btn-del-sisa-bukti" class="btn btn-danger">hapus</button>
+                    </div>
+                    <input id="input_del_sisa_bukti" type="hidden" name="input_del_sisa_bukti">
                     <input type="file" id="input-username" class="form-control" name="pembayaran_sisa_bukti">
                 </div>
             </div>
@@ -164,6 +178,30 @@
 
     document.getElementById("btn-del-file-rab").addEventListener("click", function () {
         const input = document.getElementById('input_del_file_rab');
+        // console.log('test');
+        input.value = "1";
+    });
+
+    document.getElementById("btn-del-file-tor").addEventListener("click", function () {
+        const input = document.getElementById('input_del_file_tor');
+        // console.log('test');
+        input.value = "1";
+    });
+
+    document.getElementById("btn-del-file-dp-bukti").addEventListener("click", function () {
+        const input = document.getElementById('input_del_file_dp_bukti');
+        // console.log('test');
+        input.value = "1";
+    });
+
+    document.getElementById("btn-del-file-laporan").addEventListener("click", function () {
+        const input = document.getElementById('input_del_file_laporan');
+        // console.log('test');
+        input.value = "1";
+    });
+
+    document.getElementById("btn-del-sisa-bukti").addEventListener("click", function () {
+        const input = document.getElementById('input_del_sisa_bukti');
         // console.log('test');
         input.value = "1";
     });
